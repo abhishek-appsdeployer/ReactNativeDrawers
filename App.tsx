@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Button, Text, View } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './screen/Welcome';
 import Home from './screen/Home';
 import Add from './screen/Add';
@@ -12,6 +13,7 @@ import Divide from './screen/Divide';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createBottomTabNavigator();
 
 const HomeScreen = ({ navigation }) => {
   return (
@@ -151,6 +153,30 @@ const App = () => {
                 component={Subtract}
                 options={{ headerShown: false }}
               />
+              <Drawer.Screen
+                name="BottomTab"
+                options={{ headerShown: false }}
+              >
+                {() => (
+                  <Tab.Navigator>
+                    <Tab.Screen
+                      name="Home"
+                      component={HomeScreen}
+                      options={{ tabBarLabel: 'Home' }}
+                    />
+                    <Tab.Screen
+                      name="Profile"
+                      component={ProfileScreen}
+                      options={{ tabBarLabel: 'Profile' }}
+                    />
+                    <Tab.Screen
+                      name="Settings"
+                      component={SettingsScreen}
+                      options={{ tabBarLabel: 'Settings' }}
+                    />
+                  </Tab.Navigator>
+                )}
+              </Drawer.Screen>
             </Drawer.Navigator>
           )}
         </Stack.Screen>
